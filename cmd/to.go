@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/chumam2050/ssh-connect/internal/config"
 	sshrun "github.com/chumam2050/ssh-connect/internal/ssh"
@@ -14,6 +15,31 @@ func newToCommand() *cobra.Command {
 		Use:   "to [servername]",
 		Short: "Connect to server name",
 		Args:  cobra.ExactArgs(1),
+		ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+			if len(args) > 0 {
+				return nil, cobra.ShellCompDirectiveNoFileComp
+			}
+
+			cfg, err := config.Load(cfgPath)
+			if err != nil || cfg == nil {
+				return nil, cobra.ShellCompDirectiveNoFileComp
+			}
+
+			suggestions := make([]string, 0, len(cfg.Servers))
+			needle := strings.ToLower(strings.TrimSpace(toComplete))
+			for _, s := range cfg.Servers {
+				name := strings.TrimSpace(s.Name)
+				if name == "" {
+					continue
+				}
+				if needle == "" || strings.HasPrefix(strings.ToLower(name), needle) {
+					desc := fmt.Sprintf("%s@%s:%d | account=%s", s.Username, s.Host, s.Port, s.DefaultAccount)
+					suggestions = append(suggestions, name+"\t"+desc)
+				}
+			}
+
+			return suggestions, cobra.ShellCompDirectiveNoFileComp
+		},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			serverName := args[0]
 			cfg := loadConfigOrExit()

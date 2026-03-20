@@ -45,9 +45,9 @@ else
     echo "package built, see parent directory for .deb files"
 fi
 
-# rm -f "$root/../"ssh-connect_*.{buildinfo,changes,dsc,tar.gz} || true
-# rm -f "$root/ssh-connect"
-# rm -rf "$root/debian/ssh-connect"
-# rm -f "$root/debian/debhelper-build-stamp" "$root/debian/files" \
-#        "$root/debian/ssh-connect.postrm.debhelper" "$root/debian/ssh-connect.substvars"
-# rm -rf "$root/debian/.debhelper"
+rm -f "$root/../"ssh-connect_*.{buildinfo,changes,dsc,tar.gz} || true
+rm -f "$root/ssh-connect"
+rm -rf "$root/debian/ssh-connect"
+rm -f "$root/debian/debhelper-build-stamp" "$root/debian/files" \
+       "$root/debian/ssh-connect.postrm.debhelper" "$root/debian/ssh-connect.substvars"
+rm -rf "$root/debian/.debhelper"

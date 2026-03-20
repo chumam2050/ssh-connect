@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+BIN="/usr/bin/ssh-connect"
+BASH_COMPLETION_DIR="/usr/share/bash-completion/completions"
+ZSH_COMPLETION_DIR="/usr/share/zsh/vendor-completions"
+FISH_COMPLETION_DIR="/usr/share/fish/vendor_completions.d"
+
+case "$1" in
+    configure)
+        if [ -x "$BIN" ]; then
+            mkdir -p "$BASH_COMPLETION_DIR" "$ZSH_COMPLETION_DIR" "$FISH_COMPLETION_DIR"
+
+            "$BIN" completion bash >"$BASH_COMPLETION_DIR/ssh-connect" 2>/dev/null || true
+            "$BIN" completion zsh >"$ZSH_COMPLETION_DIR/_ssh-connect" 2>/dev/null || true
+            "$BIN" completion fish >"$FISH_COMPLETION_DIR/ssh-connect.fish" 2>/dev/null || true
+        fi
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

@@ -98,3 +98,5 @@ make macos
 make deb
 make all
 ```
+
+When installed from the Debian package, shell completion files are generated automatically during install for Bash, Zsh, and Fish.
