@@ -1,0 +1,14 @@
+Source: ssh-connect
+Section: net
+Priority: optional
+Maintainer: Choerul Umam <choerulumam2050@gmail.com>
+Build-Depends: debhelper-compat (= 13), golang-go
+Standards-Version: 4.5.0
+Homepage: https://github.com/chumam2050/ssh-connect
+
+Package: ssh-connect
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: SSH multi account and server manager CLI
+ Simple command-line utility to manage multiple SSH identities and
+ named servers, then connect using short aliases.

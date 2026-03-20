@@ -1,0 +1,10 @@
+ssh-connect (0.1.0-1) UNRELEASED; urgency=medium
+
+  [ MSI ]
+  * Initial release
+  * Automatic release
+
+  [ Choerul Umam ]
+  * Automatic release
+
+ -- Choerul Umam <choerulumam2050@gmail.com>  Fri, 20 Mar 2026 14:53:59 +0700

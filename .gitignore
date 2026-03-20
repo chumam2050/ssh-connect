@@ -1,0 +1,21 @@
+# Binaries, test results, coverage, and workspace files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.*
+*.coverprofile
+profile.cov
+go.work
+go.work.sum
+.env
+
+dist/
+debian/.debhelper
+
+# Editor/IDE (commented out)
+# .idea/
+# .vscode/
